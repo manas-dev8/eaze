@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import WelcomePage from './pages/welcomepage';
+import WelcomePage from './pages/Welcomepage';
 import SignupPage from './pages/Signuppage.JSX';
 import MapPage from './pages/Mappage';
 import LocDetails from './pages/Locdetails';
