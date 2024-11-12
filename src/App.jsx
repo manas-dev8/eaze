@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import WelcomePage from './pages/Welcomepage';
-import SignupPage from './pages/Signuppage.JSX';
+import SignupPage from './pages/Signuppage';
 import MapPage from './pages/Mappage';
 import LocDetails from './pages/Locdetails';
-import PaymentGateways from './pages/Paymentgateways'; // Import the new PaymentGateways page
+import PaymentGateways from './pages/Paymentgateways';
 
 const App = () => {
   const [isSignup, setIsSignup] = useState(false);
