@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import WelcomePage from './pages/Welcomepage';
-import SignupPage from './pages/Signuppage';
+import WelcomePage from './pages/welcomepage';
+import SignupPage from './pages/Signuppage.JSX';
 import MapPage from './pages/Mappage';
 import LocDetails from './pages/Locdetails';
 import PaymentGateways from './pages/Paymentgateways';
-import Vehicledetails from './pages/Vehicledetails'; // Import Vehicledetails
+import Vehicledetails from './pages/Vehicledetails'; 
 import './App.css';
-
 const App = () => {
   const [isSignup, setIsSignup] = useState(false);
 
