@@ -1,9 +1,37 @@
-import React from "react";
-import { useNavigate } from "react-router-dom"; // Ensure you're using react-router for navigation
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaHome, FaMapMarkerAlt, FaInfoCircle } from "react-icons/fa";
 
 function LocDetails() {
   const navigate = useNavigate();
+
+  // State to manage selected time slots and date
+  const [fromTime, setFromTime] = useState("05:30 PM");
+  const [toTime, setToTime] = useState("07:30 PM");
+  const [selectedDate, setSelectedDate] = useState("2024-12-02");
+
+  // Array of predefined time slots
+  const timeSlots = [
+    { label: "05:30 PM", value: "05:30 PM" },
+    { label: "06:00 PM", value: "06:00 PM" },
+    { label: "06:30 PM", value: "06:30 PM" },
+    { label: "07:00 PM", value: "07:00 PM" },
+    { label: "07:30 PM", value: "07:30 PM" },
+  ];
+
+  // Function to handle the change in time slots
+  const handleTimeChange = (type, value) => {
+    if (type === "from") {
+      setFromTime(value);
+    } else if (type === "to") {
+      setToTime(value);
+    }
+  };
+
+  // Function to handle date change
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
 
   return (
     <div className="flex flex-col h-screen justify-between bg-cream">
@@ -16,48 +44,82 @@ function LocDetails() {
         />
       </div>
 
-      {/* Booking Details Section */}
-      <div className="flex flex-col space-y-4 p-4">
-        {/* Input Text Area */}
-        <textarea
-          placeholder=""
-          className="w-full h-20 border border-black rounded-md p-2 resize-none"
+      {/* Location Details */}
+      <div className="text-lg font-semibold pl-4">Location details</div>
+      <div className="text-2xl font-bold pl-4">
+        India Gate, Kartavya Path, India Gate, New Delhi
+      </div>
+
+      {/* Date Picker */}
+      <div className="flex items-center pl-4 mt-4">
+        <label className="text-lg font-semibold mr-4">Select Date:</label>
+        <input
+          type="date"
+          value={selectedDate}
+          onChange={handleDateChange}
+          className="border border-gray-300 p-2 rounded-md"
         />
+      </div>
 
-        {/* Location Details */}
-        <div className="text-lg font-semibold">Location details</div>
-        <div className="text-2xl font-bold">
-          India Gate, Kartavya Path, India Gate, New Delhi
+      {/* Date and Time Selection */}
+      <div className="flex items-center space-x-4 pl-4 mt-4">
+        <div className="border border-black rounded-md p-4 w-40">
+          <div className="text-sm font-semibold">From:</div>
+          <select
+            value={fromTime}
+            onChange={(e) => handleTimeChange("from", e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md"
+          >
+            {timeSlots.map((slot) => (
+              <option key={slot.value} value={slot.value}>
+                {slot.label}
+              </option>
+            ))}
+          </select>
+          <div>{fromTime}</div>
+          <div>{new Date(selectedDate).toLocaleDateString()}</div>
         </div>
-
-        {/* Date and Time Selection */}
-        <div className="flex items-center space-x-4">
-          <div className="border border-black rounded-md p-4 w-40">
-            <div className="text-sm font-semibold">From:</div>
-            <div>05:30 PM</div>
-            <div>SAT, DEC-02</div>
-          </div>
-          <div className="text-2xl">➡️</div>
-          <div className="border border-black rounded-md p-4 w-40">
-            <div className="text-sm font-semibold">To:</div>
-            <div>07:30 PM</div>
-            <div>SAT, DEC-02</div>
-          </div>
+        <div className="text-2xl">➡️</div>
+        <div className="border border-black rounded-md p-4 w-40">
+          <div className="text-sm font-semibold">To:</div>
+          <select
+            value={toTime}
+            onChange={(e) => handleTimeChange("to", e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md"
+          >
+            {timeSlots.map((slot) => (
+              <option key={slot.value} value={slot.value}>
+                {slot.label}
+              </option>
+            ))}
+          </select>
+          <div>{toTime}</div>
+          <div>{new Date(selectedDate).toLocaleDateString()}</div>
         </div>
+      </div>
 
-        {/* Vehicle Selection */}
-        <div>
-          <div className="text-lg font-semibold mb-2">Select Vehicle:</div>
-          <div className="flex space-x-4">
-            <button
-              className="p-4 border border-black rounded-md"
-              onClick={() => navigate('/paymentgateways')}
-            >
-              🏍️
-            </button>
-            <button className="p-4 border border-black rounded-md">🚗</button>
-            <button className="p-4 border border-black rounded-md">+ Vehicle</button>
-          </div>
+      {/* Vehicle Selection */}
+      <div className="pl-4 mt-4">
+        <div className="text-lg font-semibold mb-2">Select Vehicle:</div>
+        <div className="flex space-x-4">
+          <button
+            className="p-4 border border-black rounded-md"
+            onClick={() => navigate('/vehicledetails')}
+          >
+            Two Wheeler
+          </button>
+          <button 
+            className="p-4 border border-black rounded-md"
+            onClick={() => navigate('/vehicledetails')}
+          >
+            Three Wheeler
+          </button>
+          <button 
+            className="p-4 border border-black rounded-md"
+            onClick={() => navigate('/vehicledetails')}
+          >
+            Four Wheeler
+          </button>
         </div>
       </div>
 

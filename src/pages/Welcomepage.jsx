@@ -22,6 +22,11 @@ const WelcomePage = ({ onSignupClick }) => {
       </div>
 
       <div className="w-1/2 flex flex-col items-center justify-center bg-yellow-50 border-l-4 border-black p-8">
+        <img
+          src="./logo2.png" // Replace with your logo file path
+          alt="Logo"
+          className="w-72 h-32 mb-4"
+        />
         <h2 className="text-2xl font-bold mb-6">Login to your Account</h2>
         <input
           type="text"
